@@ -30,7 +30,7 @@ const PitchGenerator: React.FC = () => {
       let generatedPitch;
       
       if (audioBlob) {
-        // In a real implementation, you would send the audio to a server for transcription
+        // In a production implementation, this would send the audio for transcription
         // and then generate the pitch based on the transcription
         generatedPitch = await generatePitchFromAudio(audioBlob, selectedAudience);
       } else {

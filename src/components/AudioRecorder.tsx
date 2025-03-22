@@ -13,6 +13,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
   const [isRecording, setIsRecording] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
+  const [audioFileName, setAudioFileName] = useState<string>('Voice recording.webm');
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const chunksRef = useRef<BlobPart[]>([]);
@@ -34,6 +35,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
       mediaRecorder.onstop = () => {
         const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
         setAudioBlob(blob);
+        setAudioFileName('Voice recording.webm');
         onAudioReady(blob);
       };
       
@@ -83,6 +85,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
       if (target.files && target.files[0]) {
         const file = target.files[0];
         setAudioBlob(file);
+        setAudioFileName(file.name);
         onAudioReady(file);
         toast.success('Audio uploaded successfully');
       }
@@ -174,7 +177,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
                 Audio recording ready
               </div>
               <div className="text-xs text-pitch-dark-gray">
-                {audioBlob.name || 'Voice recording.webm'}
+                {audioFileName}
               </div>
             </div>
             <Button

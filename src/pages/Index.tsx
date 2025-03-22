@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from '@/components/Header';
@@ -6,9 +5,6 @@ import HeroSection from '@/components/HeroSection';
 import PitchGenerator from '@/components/PitchGenerator';
 import Footer from '@/components/Footer';
 import { Lightbulb, BarChartBig, Target, Zap } from 'lucide-react';
-
-// Add framer-motion package
-<lov-add-dependency>framer-motion@11.0.12</lov-add-dependency>
 
 const Index = () => {
   useEffect(() => {

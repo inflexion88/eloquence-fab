@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				pitch: {
+					blue: '#0072F5',
+					'light-blue': '#3694FF',
+					gray: '#F4F5F7',
+					'dark-gray': '#8A8F98',
+					black: '#111111',
+					'off-white': '#FAFAFA'
 				}
 			},
 			borderRadius: {
@@ -84,11 +93,65 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { 
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': { 
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'fade-in-left': {
+					'0%': { 
+						opacity: '0',
+						transform: 'translateX(-20px)'
+					},
+					'100%': { 
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'fade-in-right': {
+					'0%': { 
+						opacity: '0',
+						transform: 'translateX(20px)'
+					},
+					'100%': { 
+						opacity: '1',
+						transform: 'translateX(0)'
+					}
+				},
+				'pulse-subtle': {
+					'0%, 100%': { 
+						opacity: '1'
+					},
+					'50%': { 
+						opacity: '0.8'
+					}
+				},
+				'float': {
+					'0%, 100%': { 
+						transform: 'translateY(0)'
+					},
+					'50%': { 
+						transform: 'translateY(-10px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'fade-in-left': 'fade-in-left 0.6s ease-out',
+				'fade-in-right': 'fade-in-right 0.6s ease-out',
+				'pulse-subtle': 'pulse-subtle 2s infinite ease-in-out',
+				'float': 'float 5s infinite ease-in-out'
+			},
+			fontFamily: {
+				sans: ['Inter var', 'Inter', 'sans-serif']
 			}
 		}
 	},

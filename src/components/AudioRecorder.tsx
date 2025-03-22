@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mic, Square, Upload, Trash2 } from 'lucide-react';
@@ -33,10 +32,12 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
       };
       
       mediaRecorder.onstop = () => {
-        const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+        const audioType = 'audio/webm';
+        const blob = new Blob(chunksRef.current, { type: audioType });
         setAudioBlob(blob);
         setAudioFileName('Voice recording.webm');
         onAudioReady(blob);
+        toast.success('Recording saved successfully');
       };
       
       setIsRecording(true);
@@ -47,6 +48,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
       }, 1000);
       
       mediaRecorder.start();
+      toast.info('Recording started');
       
     } catch (error) {
       console.error('Error accessing microphone:', error);
@@ -74,6 +76,8 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
 
   const discardRecording = () => {
     setAudioBlob(null);
+    setAudioFileName('Voice recording.webm');
+    toast.info('Recording discarded');
   };
 
   const uploadAudio = () => {
@@ -84,9 +88,10 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
       const target = e.target as HTMLInputElement;
       if (target.files && target.files[0]) {
         const file = target.files[0];
-        setAudioBlob(file);
+        const fileBlob = file.slice(0, file.size, file.type);
+        setAudioBlob(fileBlob);
         setAudioFileName(file.name);
-        onAudioReady(file);
+        onAudioReady(fileBlob);
         toast.success('Audio uploaded successfully');
       }
     };

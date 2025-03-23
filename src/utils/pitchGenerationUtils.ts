@@ -9,6 +9,10 @@ export const generatePitchFromText = async (text: string, audience: string): Pro
       throw new Error('Please enter some text about your idea');
     }
     
+    toast.info('Analyzing your idea...', {
+      duration: 3000,
+    });
+    
     // Using our Claude service to generate the pitch
     return await claudeService.generatePitch(text, audience, false);
   } catch (error) {
@@ -36,6 +40,10 @@ export const generatePitchFromAudio = async (audioBlob: Blob, audience: string):
       duration: 2000,
     });
     
+    toast.info('Crafting your perfect pitch...', {
+      duration: 3000,
+    });
+    
     // Step 2: Generate the pitch using the transcription
     return await claudeService.generatePitch(transcription, audience, true);
   } catch (error) {
@@ -44,3 +52,4 @@ export const generatePitchFromAudio = async (audioBlob: Blob, audience: string):
     throw error;
   }
 };
+

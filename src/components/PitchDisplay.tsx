@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -67,14 +66,10 @@ const PitchDisplay: React.FC<PitchDisplayProps> = ({
     }
   };
   
-  // Show success stories after pitch is loaded
+  // Update the success stories visibility logic - show immediately when pitch is ready
   React.useEffect(() => {
     if (pitchText && !isLoading) {
-      const timer = setTimeout(() => {
-        setShowSuccessStories(true);
-      }, 1000);
-      
-      return () => clearTimeout(timer);
+      setShowSuccessStories(true);
     }
   }, [pitchText, isLoading]);
   
@@ -214,11 +209,12 @@ const PitchDisplay: React.FC<PitchDisplayProps> = ({
         </motion.div>
       )}
       
-      <AnimatePresence>
-        {showSuccessStories && (
+      {/* Make Success Stories explicitly visible and add debug message */}
+      {pitchText && !isLoading && (
+        <div className="mt-6 border-t border-pitch-gray/30 pt-6">
           <SuccessStories />
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </motion.div>
   );
 };

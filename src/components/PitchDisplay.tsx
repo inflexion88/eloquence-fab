@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Copy, Check, RotateCw, Download, Share2 } from 'lucide-react';
 import { toast } from 'sonner';
+import SuccessStories from './SuccessStories';
 
 interface PitchDisplayProps {
   pitchText: string;
@@ -17,6 +18,7 @@ const PitchDisplay: React.FC<PitchDisplayProps> = ({
   onRegenerate 
 }) => {
   const [isCopied, setIsCopied] = useState(false);
+  const [showSuccessStories, setShowSuccessStories] = useState(false);
   
   const copyToClipboard = () => {
     if (!pitchText) return;
@@ -64,6 +66,17 @@ const PitchDisplay: React.FC<PitchDisplayProps> = ({
       toast.success('Pitch copied to clipboard for sharing');
     }
   };
+  
+  // Show success stories after pitch is loaded
+  React.useEffect(() => {
+    if (pitchText && !isLoading) {
+      const timer = setTimeout(() => {
+        setShowSuccessStories(true);
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [pitchText, isLoading]);
   
   return (
     <motion.div 
@@ -200,6 +213,12 @@ const PitchDisplay: React.FC<PitchDisplayProps> = ({
           </Button>
         </motion.div>
       )}
+      
+      <AnimatePresence>
+        {showSuccessStories && (
+          <SuccessStories />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };

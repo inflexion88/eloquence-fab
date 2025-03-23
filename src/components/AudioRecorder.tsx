@@ -1,7 +1,6 @@
-
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mic, Square, Upload, Trash2, Waveform } from 'lucide-react';
+import { Mic, Square, Upload, Trash2, AudioLines } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -244,7 +243,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({ onAudioReady }) => {
             transition={{ duration: 0.3 }}
           >
             <div className="w-10 h-10 rounded-full bg-pitch-blue/10 flex items-center justify-center">
-              <Waveform size={18} className="text-pitch-blue" />
+              <AudioLines size={18} className="text-pitch-blue" />
             </div>
             <div className="flex-1">
               <div className="text-sm font-medium text-pitch-black">

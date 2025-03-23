@@ -19,7 +19,7 @@ const SuccessStories: React.FC = () => {
       name: 'Michael R.',
       role: 'Sales Director',
       company: 'EnterpriseX',
-      quote: 'We've seen a 43% increase in customer conversions since using these AI-generated pitches. The personalization is remarkable.',
+      quote: 'We\'ve seen a 43% increase in customer conversions since using these AI-generated pitches. The personalization is remarkable.',
       icon: <TrendingUp className="text-green-500" size={18} />,
       audience: 'customers'
     },
